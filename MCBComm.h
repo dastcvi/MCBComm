@@ -13,6 +13,8 @@
 
 #include "SerialComm.h"
 
+#define MOTION_TM_SIZE     33
+
 enum MCBMessages_t : uint8_t {
     MCB_NO_MESSAGE = 0,
 
@@ -49,6 +51,22 @@ enum MCBMessages_t : uint8_t {
     MCB_IN_ACC,   // ACK expected
     MCB_DOCK_ACC, // ACK expected
     // todo: update limits
+
+    // MCB -> DIB/PIB (binary) -------------
+    MCB_MOTION_TM,
+};
+
+// rotating parameter for the MCB binary motion telemetry
+enum RotatingParam_t : uint8_t {
+    FIRST_ROTATING_PARAM = 0,
+    PARAM_REEL_TEMP = FIRST_ROTATING_PARAM,
+    PARAM_LW_TEMP = 1,
+    PARAM_MC1_TEMP = 2,
+    PARAM_MC2_TEMP = 3,
+    PARAM_BRAKE_CURR = 4,
+    PARAM_SUPPLY_VOLT = 5,
+
+    NUM_ROTATING_PARAMS
 };
 
 

@@ -13,7 +13,7 @@
 
 #include "SerialComm.h"
 
-#define MOTION_TM_SIZE     33
+#define MOTION_TM_SIZE     29
 
 enum MCBMessages_t : uint8_t {
     MCB_NO_MESSAGE = 0,

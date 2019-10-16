@@ -291,6 +291,31 @@ bool MCBComm::RX_Dock(float * num_revs, float * speed)
     return true;
 }
 
+// -- Reel in without the level wind
+
+bool MCBComm::TX_In_No_LW(float num_revs, float speed)
+{
+    if (!Add_float(num_revs)) return false;
+    if (!Add_float(speed)) return false;
+
+    TX_ASCII(MCB_IN_NO_LW);
+
+    return true;
+}
+
+bool MCBComm::RX_In_No_LW(float * num_revs, float * speed)
+{
+    float temp1, temp2;
+
+    if (!Get_float(&temp1)) return false;
+    if (!Get_float(&temp2)) return false;
+
+    *num_revs = temp1;
+    *speed = temp2;
+
+    return true;
+}
+
 // -- Reel out acceleration
 
 bool MCBComm::TX_Out_Acc(float acceleration)

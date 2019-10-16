@@ -47,6 +47,7 @@ enum MCBMessages_t : uint8_t {
     MCB_REEL_OUT, // ACK expected
     MCB_REEL_IN,  // ACK expected
     MCB_DOCK,     // ACK expected
+    MCB_IN_NO_LW, // ACK expected
     MCB_OUT_ACC,  // ACK expected
     MCB_IN_ACC,   // ACK expected
     MCB_DOCK_ACC, // ACK expected
@@ -107,6 +108,9 @@ public:
 
     bool TX_Dock(float num_revs, float speed);
     bool RX_Dock(float * num_revs, float * speed);
+
+    bool TX_In_No_LW(float num_revs, float speed);
+    bool RX_In_No_LW(float * num_revs, float * speed);
 
     bool TX_Out_Acc(float acceleration);
     bool RX_Out_Acc(float * acceleration);

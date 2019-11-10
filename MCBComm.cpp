@@ -214,6 +214,93 @@ bool MCBComm::RX_Currents(float * brake, float * mcs, float * motor1, float * mo
     return true;
 }
 
+// -- Temperature Limits
+
+bool MCBComm::TX_Temp_Limits(float m1_hi, float m1_lo, float m2_hi, float m2_lo, float mc1_hi, float mc1_lo)
+{
+    if (!Add_float(m1_hi)) return false;
+    if (!Add_float(m1_lo)) return false;
+    if (!Add_float(m2_hi)) return false;
+    if (!Add_float(m2_lo)) return false;
+    if (!Add_float(mc1_hi)) return false;
+    if (!Add_float(mc1_lo)) return false;
+
+    TX_ASCII(MCB_TEMP_LIMITS);
+
+    return true;
+}
+
+bool MCBComm::RX_Temp_Limits(float * m1_hi, float * m1_lo, float * m2_hi, float * m2_lo, float * mc1_hi, float * mc1_lo)
+{
+    float temp[6];
+
+    if (!Get_float(&(temp[0]))) return false;
+    if (!Get_float(&(temp[1]))) return false;
+    if (!Get_float(&(temp[2]))) return false;
+    if (!Get_float(&(temp[3]))) return false;
+    if (!Get_float(&(temp[4]))) return false;
+    if (!Get_float(&(temp[5]))) return false;
+
+    *m1_hi = temp[0];
+    *m1_lo = temp[1];
+    *m2_hi = temp[2];
+    *m2_lo = temp[3];
+    *mc1_hi = temp[4];
+    *mc1_lo = temp[5];
+
+    return true;
+}
+
+// -- Torque Limits
+
+bool MCBComm::TX_Torque_Limits(float reel_hi, float reel_lo)
+{
+    if (!Add_float(reel_hi)) return false;
+    if (!Add_float(reel_lo)) return false;
+
+    TX_ASCII(MCB_TORQUE_LIMITS);
+
+    return true;
+}
+
+bool MCBComm::RX_Torque_Limits(float * reel_hi, float * reel_lo)
+{
+    float temp[2];
+
+    if (!Get_float(&(temp[0]))) return false;
+    if (!Get_float(&(temp[1]))) return false;
+
+    *reel_hi = temp[0];
+    *reel_lo = temp[1];
+
+    return true;
+}
+
+// -- Current Limits
+
+bool MCBComm::TX_Curr_Limits(float reel_hi, float reel_lo)
+{
+    if (!Add_float(reel_hi)) return false;
+    if (!Add_float(reel_lo)) return false;
+
+    TX_ASCII(MCB_CURR_LIMITS);
+
+    return true;
+}
+
+bool MCBComm::RX_Curr_Limits(float * reel_hi, float * reel_lo)
+{
+    float temp[2];
+
+    if (!Get_float(&(temp[0]))) return false;
+    if (!Get_float(&(temp[1]))) return false;
+
+    *reel_hi = temp[0];
+    *reel_lo = temp[1];
+
+    return true;
+}
+
 // DIB/PIB -> MCB (with params) ---------------------------
 
 // -- Reel out command

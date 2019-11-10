@@ -45,14 +45,16 @@ enum MCBMessages_t : uint8_t {
     MCB_FULL_RETRACT,
 
     // DIB/PIB -> MCB (with params) --------
-    MCB_REEL_OUT, // ACK expected
-    MCB_REEL_IN,  // ACK expected
-    MCB_DOCK,     // ACK expected
-    MCB_IN_NO_LW, // ACK expected
-    MCB_OUT_ACC,  // ACK expected
-    MCB_IN_ACC,   // ACK expected
-    MCB_DOCK_ACC, // ACK expected
-    // todo: update limits
+    MCB_REEL_OUT,      // ACK expected
+    MCB_REEL_IN,       // ACK expected
+    MCB_DOCK,          // ACK expected
+    MCB_IN_NO_LW,      // ACK expected
+    MCB_OUT_ACC,       // ACK expected
+    MCB_IN_ACC,        // ACK expected
+    MCB_DOCK_ACC,      // ACK expected
+    MCB_TEMP_LIMITS,   // ACK expected
+    MCB_TORQUE_LIMITS, // ACK expected
+    MCB_CURR_LIMITS,   // ACK expected
 
     // MCB -> DIB/PIB (binary) -------------
     MCB_MOTION_TM,
@@ -98,6 +100,15 @@ public:
 
     bool TX_Currents(float brake, float mcs, float motor1, float motor2);
     bool RX_Currents(float * brake, float * mcs, float * motor1, float * motor2);
+
+    bool TX_Temp_Limits(float m1_hi, float m1_lo, float m2_hi, float m2_lo, float mc1_hi, float mc1_lo);
+    bool RX_Temp_Limits(float * m1_hi, float * m1_lo, float * m2_hi, float * m2_lo, float * mc1_hi, float * mc1_lo);
+
+    bool TX_Torque_Limits(float reel_hi, float reel_lo);
+    bool RX_Torque_Limits(float * reel_hi, float * reel_lo);
+
+    bool TX_Curr_Limits(float reel_hi, float reel_lo);
+    bool RX_Curr_Limits(float * reel_hi, float * reel_lo);
 
     // DIB/PIB -> MCB (with params) -----------------------
 

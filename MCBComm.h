@@ -23,7 +23,6 @@ enum MCBMessages_t : uint8_t {
 
     // MCB -> DIB/PIB (with params) --------
     MCB_MOTION_STATUS,
-    MCB_ERROR,
     MCB_MOTION_FAULT,
     MCB_TEMPERATURES,
     MCB_VOLTAGES,
@@ -58,6 +57,9 @@ enum MCBMessages_t : uint8_t {
 
     // MCB -> DIB/PIB (binary) -------------
     MCB_MOTION_TM,
+
+    // MCB -> DIB/PIB (string) -------------
+    MCB_ERROR,
 };
 
 // rotating parameter for the MCB binary motion telemetry
@@ -84,7 +86,7 @@ public:
     bool TX_Motion_Status(float reel_pos, float lw_pos, float reel_torque, float reel_temp, float lw_temp); // todo: voltages? timestamp?
     bool RX_Motion_Status(float * reel_pos, float * lw_pos, float * reel_torque, float * reel_temp, float * lw_temp);
 
-    bool TX_Error(const char * error);
+    void TX_Error(const char * error);
     bool RX_Error(char * error, uint8_t buffer_size);
 
     bool TX_Motion_Fault(uint16_t rl_status_lo, uint16_t rl_status_hi, uint16_t rl_detailed_err, uint16_t rl_motion_err,

@@ -54,15 +54,11 @@ bool MCBComm::RX_Motion_Status(float * reel_pos, float * lw_pos, float * reel_to
 
 // -- MCB error string
 
-bool MCBComm::TX_Error(const char * error)
+void MCBComm::TX_Error(const char * error)
 {
     Serial.print("TX ERR: "); Serial.println(error);
 
-    if (Add_string(error)) return false;
-
-    TX_ASCII(MCB_ERROR);
-
-    return true;
+    TX_String(MCB_ERROR, error);
 }
 
 bool MCBComm::RX_Error(char * error, uint8_t buffer_size)

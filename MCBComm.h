@@ -42,6 +42,8 @@ enum MCBMessages_t : uint8_t {
     MCB_CONTROLLERS_ON,
     MCB_CONTROLLERS_OFF,
     MCB_FULL_RETRACT,
+    MCB_IGNORE_LIMITS,
+    MCB_USE_LIMITS,
 
     // DIB/PIB -> MCB (with params) --------
     MCB_REEL_OUT,      // ACK expected

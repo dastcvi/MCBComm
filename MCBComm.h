@@ -13,7 +13,9 @@
 
 #include "SerialComm.h"
 
-#define MOTION_TM_SIZE     29
+// binary message sizing in bytes
+#define MAX_MCB_BINARY      200
+#define MOTION_TM_SIZE      29
 
 enum MCBMessages_t : uint8_t {
     MCB_NO_MESSAGE = 0,

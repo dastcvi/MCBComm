@@ -13,7 +13,9 @@
 
 #include "SerialComm.h"
 
-#define MOTION_TM_SIZE     29
+// binary message sizing in bytes
+#define MAX_MCB_BINARY      200
+#define MOTION_TM_SIZE      29
 
 enum MCBMessages_t : uint8_t {
     MCB_NO_MESSAGE = 0,
@@ -42,6 +44,9 @@ enum MCBMessages_t : uint8_t {
     MCB_CONTROLLERS_ON,
     MCB_CONTROLLERS_OFF,
     MCB_FULL_RETRACT,
+    MCB_IGNORE_LIMITS,
+    MCB_USE_LIMITS,
+    MCB_GET_EEPROM,
 
     // DIB/PIB -> MCB (with params) --------
     MCB_REEL_OUT,      // ACK expected
@@ -57,6 +62,7 @@ enum MCBMessages_t : uint8_t {
 
     // MCB -> DIB/PIB (binary) -------------
     MCB_MOTION_TM,
+    MCB_EEPROM,
 
     // MCB -> DIB/PIB (string) -------------
     MCB_ERROR,
